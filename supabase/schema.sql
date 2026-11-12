@@ -82,6 +82,19 @@ create table noticias (
   created_at timestamptz not null default now()
 );
 
+-- Marcou "publicado" e deixou "publicado_em" vazio: usa a hora atual
+create or replace function noticias_publicado_em() returns trigger
+language plpgsql set search_path = '' as $$
+begin
+  if new.publicado and new.publicado_em is null then
+    new.publicado_em := now();
+  end if;
+  return new;
+end $$;
+
+create trigger noticias_publicado_em before insert or update on noticias
+  for each row execute function noticias_publicado_em();
+
 -- Patrocinadores
 create table patrocinadores (
   id uuid primary key default gen_random_uuid(),

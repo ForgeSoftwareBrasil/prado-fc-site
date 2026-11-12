@@ -33,7 +33,7 @@ Tudo é feito no painel do Supabase (supabase.com → seu projeto). O site atual
 
 1. **Storage** → bucket `noticias` → envie a capa e copie o endereço público (**Get URL**).
 2. **Table Editor** → `noticias` → **Insert row**: título, slug (endereço da notícia, sem espaços nem acentos, ex.: `estreia-na-champions`), resumo, conteúdo em Markdown e a capa (`capa_url`).
-3. Marque `publicado` e preencha `publicado_em` com a data e hora.
+3. Marque `publicado`. Para publicar na hora, deixe `publicado_em` vazio (o banco preenche com a hora atual). Para agendar, preencha `publicado_em` no formato `2026-11-18 10:00:00-03`; a notícia aparece a partir desse horário.
 
 No conteúdo, dá para usar **negrito** (`**texto**`), títulos (`## Título`), listas (`- item`), links (`[texto](https://...)`) e imagens (`![descrição](https://...)`).
 
