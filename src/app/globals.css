@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* Tokens da seção 9 (iguais às variáveis do arquivo FigCraft) */
+@theme {
+  --color-noite: #1a1030;
+  --color-noite-profunda: #120a22;
+  --color-roxo: #4b2e83;
+  --color-turquesa: #00b5b8;
+  --color-turquesa-claro: #5fe3e5;
+  --color-branco: #ffffff;
+  --color-texto-2: #cfc6e6;
+  --color-texto-3: #8e86a3;
+  --color-prata: #a9aeb8;
+  --color-roxo-claro: #9b7fd4;
+
+  /* As variáveis --fonte-* vêm do next/font no layout */
+  --font-anton: var(--fonte-anton), Impact, sans-serif;
+  --font-sans: var(--fonte-montserrat), system-ui, sans-serif;
+  --font-cinzel: var(--fonte-cinzel), serif;
+}
+
+@layer base {
+  html {
+    background: var(--color-noite);
+    color: var(--color-branco);
+    color-scheme: dark;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    /* Listras diagonais bem discretas (~3%), como nas artes do Instagram */
+    background-image: repeating-linear-gradient(135deg, rgb(255 255 255 / 0.03) 0 2px, transparent 2px 14px);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-turquesa);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility titulo {
+  font-family: var(--font-anton);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@utility rotulo {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Entrada suave das seções */
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@utility entrar {
+  animation: entrar 250ms ease-out both;
+}
